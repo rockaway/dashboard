@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Real-time Dashboard</title> 
+    <!-- jquery resource -->
+    <script src="/static/jquery-1.11.1.js"></script>
+    <!-- socket.io resource -->
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- d3 resource -->
+    <script src="/static/d3.v3.js"></script>    
+    <!-- nvd3 resource -->
+    <link rel="stylesheet" type="text/css" href="/static/nvd3lib/nv.d3.css">
+    <script src="/static/nv.d3.min.js"></script>
+    <!-- dashboard resource -->
+    <link rel="stylesheet" type="text/css" href="/demo/css/widget.css">
+    <script src="/demo/js/widget.js"></script>    
+    <script src="/demo/js/demo.js"></script>    
+    <script>
+    function startTimer(socket,selection,interval){
+         //var timer = setTimeout(function() {
+         return setInterval(function() {
+                    $( selection ).each(function( index ) {
+                       $(this).css({background:'yellow'});
+                       var newData = getPushDataSample($(this).data('type')).data;
+                       //console.log(data[index]);
+                       socket.emit('submit', '{"id":"'+$(this).data('id')+'","type":"'+$(this).data('type')+'","data":'+ newData +'}' );
+                    });
+               }, interval);
+    }  
+    function autoPushAlert(socket,interval){
+         return setInterval(function() {
+             var message = 'AUTO PUSHED ALERT '+new Date().toUTCString();
+             socket.emit('submit','{"type":"'+WIDGET_ALERT+'","data":{"message":"'+message+'"}}' );
+          }, interval);
+    }     
+    </script>    
+  </head>
+  <body>
+    <div class="widget-container"></div>   
+    <form action="/timer">
+        <span class="label home"><a href="/">[Home]</a></span>
+        <span id="timer_state" style="display:none">0</span>
+        <input type="text" id="timer_value" value="2000">
+        <button id="timer_button">Start Stream</button>
+    </form>      
+    <script>
+    var socket = io();
+    var timers = [];
+    $('form').submit(function(){
+        if ($('#timer_state').text()=="0"){
+            var t1 = startTimer(socket,'.widget-container > div:nth-child(even)', $('#timer_value').val());
+            timers.push(t1);
+            var t2 = startTimer(socket,'.widget-container > div:nth-child(odd)', $('#timer_value').val());
+            timers.push(t2);
+            var t3 = autoPushAlert(socket,10000);
+            timers.push(t3);
+            $('#timer_state').html("1");
+            $("#timer_value").prop('disabled', true);
+            $('#timer_button').text('Stop Stream');
+            $('#timer_button').css({background:"gray"});
+        }
+        else {
+            for (var i = 0; i < timers.length; i++) {
+                clearInterval(timers[i]);
+            }
+            $('#timer_state').html("0");
+            $("#timer_value").prop('disabled', false);
+            $('#timer_button').text('Start Stream');
+            $('#timer_button').css({background:"crimson"});
+            $( '.widget-container > div' ).each(function( index ) {
+                    $(this).css({background:'white'});
+            });
+        }
+        return false;
+    });    
+    
+    socket.on('widget', function(obj){
+        new Widget(obj).refresh();
+    });  
+    //create 4 widgets
+    var data = [];
+    data[0] = '{"type":"'+WIDGET_HORIZONTAL_BARCHART+'","data":'+getPushDataSample(WIDGET_HORIZONTAL_BARCHART).data+'}';
+    socket.emit('submit', data[0]);
+    data[1] = '{"type":"'+WIDGET_VERTICAL_BARCHART+'","data":'+getPushDataSample(WIDGET_VERTICAL_BARCHART).data+'}';
+    socket.emit('submit', data[1]);
+    data[2] = '{"type":"'+WIDGET_PIECHART+'","data":'+getPushDataSample(WIDGET_PIECHART).data+'}';
+    socket.emit('submit', data[2]);
+    data[3] = '{"type":"'+WIDGET_COUNTER+'","data":'+getPushDataSample(WIDGET_COUNTER).data+'}';
+    socket.emit('submit', data[3]);
+    </script>    
+  </body>
+</html>

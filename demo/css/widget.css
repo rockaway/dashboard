@@ -1,0 +1,136 @@
+/**
+ * widget.css
+ *
+ * @license GPL-3.0, https://opensource.org/licenses/GPL-3.0
+ * @author  Lok Kek Wee
+ */
+body { font: 13px Helvetica, Arial; margin:0; }
+.note { position: absolute; bottom: 75px; padding: 10px }
+form { padding: 3px; position: fixed; bottom: 0; width: 100%; background: lightblue;}
+form input[type="text"]{ padding: 10px; width: 86%; font-size: 1.5em;}
+form #timer_value { width: 81%; }
+form button { 
+    width: 11%;
+    background: crimson;
+    color: white;
+    border: none;
+    padding: 11.5px;
+    font-size: 1.5em; 
+    cursor: pointer;
+}
+form .hint { 
+    margin-left: 20px;
+    color: gray;
+    font-style: italic;
+}
+form .label {
+    vertical-align: top;
+}
+form .label.home {
+    margin-left: 5px;
+    margin-right: 15px;
+    float: left;
+}
+.widget-container {
+    vertical-align: top;
+    width:auto;
+    padding:5px;
+    width:99%;
+}
+.widget {
+    float:left;
+    position:relative;
+    padding: 5px;
+    margin: 5px;
+    border: 2px solid whitesmoke;
+    cursor: pointer;
+}
+.widget.active{
+   border: 2px solid yellow;
+   background: yellow;
+}
+.widget .header {
+    position: relative;
+    text-align: left;
+    width: auto;
+    display: block;
+    top: 0px;
+    background: lightslategray;
+    color: white;
+    margin: -5px -5px 10px -5px;
+    padding: 3px;
+}
+.widget .header .button{
+    color: white;
+    position: absolute;
+    top: 0;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+.widget .header .button.minimize{
+    right: 24px;
+}
+.widget .header .button.maximize{
+    right: 12px;
+}
+.widget .header .button.close{
+    right: 3px;
+}
+.widget div {
+    font: 10px sans-serif;
+    background-color: steelblue;
+    text-align: right;
+    padding: 3px;
+    margin: 1px;
+    color: white;
+}
+.widget.counter .header {
+    position: absolute;
+    width: auto;
+    margin: 0px;
+    left: 0px;
+    right: 0px;
+}
+.widget.counter div {
+    text-align: center;
+    background: inherit;
+    color: inherit;
+}
+.widget.counter .title {
+    font-size: 2.5em;
+    margin-top: 20px;
+}
+.widget.counter .counter {
+    font-size: 6em;
+    font-weight: bold;
+    color: black;
+    margin-top: 40px;
+}
+.widget.counter .subscript,
+.widget.counter .last_update_date {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+.alert {
+    top: 0;
+    background: yellow;
+    color: orangered;
+    font-size: 2em;
+    margin: 0 auto;
+    padding: 5px;
+    text-transform: uppercase;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    text-align: center;
+    width: 99.2%;
+    position: relative;
+}
+.alert .close-button {
+    color: whitesmoke;
+    right: 1px;
+    position: absolute;
+    top: 0;
+    font-size: 0.4em;
+    cursor: pointer;
+}
