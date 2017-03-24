@@ -3,7 +3,7 @@
   "version": "0.1",
   "description": "realtime dashboard app",
   "dependencies": {
-    "express": "^4.8.5",
-    "socket.io": "^1.0.6"
+    "express": "4.15.2",
+    "socket.io": "1.7.3"
   }
 }
