@@ -65,8 +65,6 @@ io.on('connection', function(socket){
 /* later */
 //clearInterval(timer);
 
-
-
 app.get('/example/pieChart', function(req, res){
   res.sendfile('pieChart.html');
 });
