@@ -4,7 +4,7 @@
  *
  * @license GPL-3.0, https://opensource.org/licenses/GPL-3.0
  * @version 0.1
- * @author  Lok Kek Wee
+ * @author  rockaway
  *
  */
 function getPushDataSample(type){

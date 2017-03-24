@@ -3,7 +3,7 @@
  * This is the demo server 
  *
  * @license GPL-3.0, https://opensource.org/licenses/GPL-3.0
- * @author  Lok Kek Wee
+ * @author  rockaway
  */
 var fs = require('fs');
 // file is included here:
