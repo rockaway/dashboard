@@ -13,6 +13,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var clients = [];
+app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function(req, res){
   res.sendfile('index.html');
@@ -77,7 +78,7 @@ app.get('/example/svgBarchart', function(req, res){
   res.sendfile('svgBarChart.html');
 });
 
-//To change port here. default to 80
-http.listen('80', function(){
-  console.log('listening on *:');
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
 });
+
