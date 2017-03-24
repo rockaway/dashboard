@@ -33,7 +33,9 @@
         <button>Push</button>
     </form>      
     <script>
-    var socket = io('/');
+//    var socket = io('/');
+    var socket = io.connect('https://evening-waters-60087.herokuapp.com/');
+
     $('input[name="push_type"').click(function(){
         var sample = getPushDataSample($(this).val());
         $('.hint').html(sample.hint);
