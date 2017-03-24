@@ -77,6 +77,7 @@ app.get('/example/svgBarchart', function(req, res){
   res.sendfile('svgBarChart.html');
 });
 
-http.listen(3000, function(){
-  console.log('listening on *:3000');
+//To change port here. default to 80
+http.listen('80', function(){
+  console.log('listening on *:');
 });
