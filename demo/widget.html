@@ -19,7 +19,7 @@
   </head>
   <body>
     <div class="widget-container"></div>
-    <div class="note"><strong>Note</strong> Click on widget to push data and have real-time graph update</div>
+    <div class="note"><strong>Note</strong> Click / Select on widget, and next click 'Push' button to have real-time graph update</div>
     <form action="/">
         <span class="label home"><a href="/">[Home]</a></span>
         <span class="label">Dashboard Widget:</span>
@@ -33,8 +33,8 @@
         <button>Push</button>
     </form>      
     <script>
-//    var socket = io('/');
-    var socket = io.connect('https://evening-waters-60087.herokuapp.com/');
+    var socket = io('/');
+//    var socket = io.connect('https://evening-waters-60087.herokuapp.com/');
 
     $('input[name="push_type"').click(function(){
         var sample = getPushDataSample($(this).val());
