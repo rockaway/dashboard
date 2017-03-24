@@ -12,6 +12,9 @@ Open source library used:
 
 Make sure nodejs, express and socket.io are installed.
 
+         npm install --save --save-exact express socket.io
+
+
 To run the program, execute following at command prompt:
 
         node index.js
