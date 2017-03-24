@@ -5,8 +5,8 @@
  * @license GPL-3.0, https://opensource.org/licenses/GPL-3.0
  * @author  rockaway
  */
-var DEFAULT_WIDTH = 300, 
-    DEFAULT_HEIGHT = 300,
+var DEFAULT_WIDTH = 250, 
+    DEFAULT_HEIGHT = 250,
     WIDGET_PIECHART = 'piechart', 
     WIDGET_VERTICAL_BARCHART = 'vertical_barchart', 
     WIDGET_HORIZONTAL_BARCHART = 'horizontal_barchart', 
