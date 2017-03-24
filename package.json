@@ -2,8 +2,12 @@
   "name": "dashboard",
   "version": "0.1",
   "description": "realtime dashboard app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
-    "express": "4.15.2",
-    "socket.io": "1.7.3"
+    "express": "4.13.4",
+    "socket.io": "1.4.6"
   }
 }

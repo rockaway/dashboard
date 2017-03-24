@@ -5,22 +5,43 @@
  * @license GPL-3.0, https://opensource.org/licenses/GPL-3.0
  * @author  rockaway
  */
+
 var fs = require('fs');
 // file is included here:
 eval(fs.readFileSync('./demo/js/widget.js')+'');
 var express = require('express');
+var socketIO = require('socket.io');
+var path = require('path');
+
+var PORT = process.env.PORT || 3000;
+var INDEX = path.join(__dirname, 'index.html');
 var app = express();
 app.set('port', (process.env.PORT || 5000));
-
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var clients = [];
-
-app.get('/', function(req, res){
-  res.sendfile('index.html');
-});
 app.use('/static',express.static(__dirname + '/static'));
 app.use('/demo',express.static(__dirname + '/demo'));
+
+var server = app
+  .get('/', function(req, res){
+    res.sendfile('index.html');
+  })
+  .listen(app.get('port'), function() {
+      console.log('Node app is running on port', app.get('port'));
+    });
+
+var io = socketIO(server);
+
+var clients = [];
+
+app.get('/example/pieChart', function(req, res){
+  res.sendfile('pieChart.html');
+});
+app.get('/example/barChart', function(req, res){
+  res.sendfile('barChart.html');
+});
+app.get('/example/svgBarchart', function(req, res){
+  res.sendfile('svgBarChart.html');
+});
+
 
 io.on('connection', function(socket){
   console.log(new Date().toUTCString()+': New client connected (id=' + socket.id + ').');
@@ -65,18 +86,3 @@ io.on('connection', function(socket){
 //}, 10000);
 /* later */
 //clearInterval(timer);
-
-app.get('/example/pieChart', function(req, res){
-  res.sendfile('pieChart.html');
-});
-app.get('/example/barChart', function(req, res){
-  res.sendfile('barChart.html');
-});
-app.get('/example/svgBarchart', function(req, res){
-  res.sendfile('svgBarChart.html');
-});
-
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
-
