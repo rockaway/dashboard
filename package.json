@@ -1,6 +1,6 @@
 {
-  "name": "dashboard-visualization",
-  "version": "0.0.1",
+  "name": "dashboard",
+  "version": "0.1",
   "description": "realtime dashboard app",
   "dependencies": {
     "express": "^4.8.5",
