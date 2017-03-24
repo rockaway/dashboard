@@ -3,7 +3,7 @@
  * This library contains all the visualization widget such as pie chart, barchart, counter, alert etc.
  *
  * @license GPL-3.0, https://opensource.org/licenses/GPL-3.0
- * @author  Lok Kek Wee
+ * @author  rockaway
  */
 var DEFAULT_WIDTH = 300, 
     DEFAULT_HEIGHT = 300,
