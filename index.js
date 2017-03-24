@@ -10,18 +10,16 @@ var fs = require('fs');
 eval(fs.readFileSync('./demo/js/widget.js')+'');
 var express = require('express');
 var app = express();
-var http = require('http').Server(app);
-//var io = require('socket.io')(http);
-var io = socketIO(app);
-
-var clients = [];
 app.set('port', (process.env.PORT || 5000));
+
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+var clients = [];
 
 app.get('/', function(req, res){
   res.sendfile('index.html');
 });
 app.use('/static',express.static(__dirname + '/static'));
-app.use('/nvd3-master',express.static(__dirname + '/nvd3-master'));
 app.use('/demo',express.static(__dirname + '/demo'));
 
 io.on('connection', function(socket){
